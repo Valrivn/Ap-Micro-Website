@@ -315,37 +315,40 @@ body.document-mode .slide-dots-container {
 .doodle-corner {
   position: absolute;
   pointer-events: none;
-  z-index: 1;
-  opacity: 0.75;
+  z-index: 0;
+  opacity: 0.42;
+  transition: opacity 0.3s ease;
 }
 
 .doodle-top-left {
-  top: -15px;
-  left: -20px;
+  top: -30px;
+  left: -32px;
 }
 
 .doodle-bottom-right {
-  bottom: -20px;
-  right: -20px;
+  bottom: -30px;
+  right: -32px;
 }
 
 .ribbon-decor {
   position: absolute;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
+  opacity: 0.35;
 }
 
 .ribbon-top-right {
-  top: -10px;
-  right: -10px;
+  top: -24px;
+  right: -24px;
 }
 
 .brush-title-wrap {
   display: inline-block;
-  background: rgba(16, 45, 34, 0.8);
+  background: rgba(16, 45, 34, 0.85);
   border-left: 4px solid var(--accent-sage);
-  padding: 0.2rem 0.8rem;
+  padding: 0.25rem 0.85rem;
   border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
 /* ==========================================================================
@@ -354,11 +357,17 @@ body.document-mode .slide-dots-container {
 
 .archival-card {
   background: var(--bg-card-dark);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  padding: 1.4rem;
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.archival-card:hover {
+  border-color: rgba(158, 226, 165, 0.3);
+  box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(158, 226, 165, 0.2);
 }
 
 .card-tag {
@@ -1395,6 +1404,14 @@ body.document-mode .slide-dots-container {
   margin-bottom: 0.75rem;
 }
 
+.chart-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 .chart-title {
   font-family: var(--font-display);
   font-size: 1.15rem;
@@ -1405,6 +1422,29 @@ body.document-mode .slide-dots-container {
 .chart-subtitle {
   font-size: 0.78rem;
   color: var(--text-on-dark-muted);
+}
+
+.play-timeline-btn {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: var(--accent-sage);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: var(--transition-smooth);
+}
+
+.play-timeline-btn:hover,
+.play-timeline-btn.playing {
+  background: var(--accent-sage);
+  color: #0f221b;
+  box-shadow: 0 0 12px rgba(158, 226, 165, 0.5);
 }
 
 .trade-chart-wrapper {
@@ -1421,6 +1461,71 @@ body.document-mode .slide-dots-container {
 .trade-chart-wrapper svg {
   width: 100%;
   height: 100%;
+}
+
+.timeline-controls-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+}
+
+.slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.slider-year-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-on-dark-muted);
+  font-weight: 600;
+}
+
+.timeline-range-slider {
+  flex: 1;
+  accent-color: var(--accent-gold);
+  height: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.era-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.era-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-on-dark-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.era-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.era-chip.active {
+  background: rgba(229, 195, 120, 0.18);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  font-weight: 700;
 }
 
 .chart-active-metrics {

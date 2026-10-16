@@ -558,14 +558,37 @@
           <!-- Left: Interactive Time-Series Trade Chart (1928 - 1940) -->
           <div class="archival-card trade-chart-card">
             <div class="chart-card-header">
-              <div>
-                <h3 class="chart-title">Longitudinal US Trade Volume (1928–1940)</h3>
-                <span class="chart-subtitle">Click points along the timeline to inspect import collapse and post-1934 RTAA recovery</span>
+              <div class="chart-header-flex">
+                <div>
+                  <h3 class="chart-title">Longitudinal US Trade Volume (1928–1940)</h3>
+                  <span class="chart-subtitle">Drag slider or click milestones to inspect the 70% import collapse & post-1934 recovery</span>
+                </div>
+                <!-- Play Story Animated Button -->
+                <button id="btn-play-timeline" class="play-timeline-btn" title="Animate through the 1928-1940 trade timeline">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <span>Play Story</span>
+                </button>
               </div>
             </div>
 
-            <!-- SVG Line Chart populated by trade-chart.js -->
+            <!-- SVG Line Chart populated by trade-chart.js (Clean, Collision-Free) -->
             <div class="trade-chart-wrapper" id="trade-chart-container"></div>
+
+            <!-- Interactive Timeline Scrubber & Quick Era Jump Chips -->
+            <div class="timeline-controls-bar">
+              <div class="slider-wrap">
+                <span class="slider-year-label">1928</span>
+                <input type="range" id="timeline-slider" class="timeline-range-slider" min="1928" max="1940" value="1932" step="1">
+                <span class="slider-year-label">1940</span>
+              </div>
+              <div class="era-chips-row">
+                <button class="era-chip" data-year="1929">1929 Baseline</button>
+                <button class="era-chip" data-year="1930">1930 Smoot-Hawley</button>
+                <button class="era-chip active" data-year="1932">1932 Catastrophe</button>
+                <button class="era-chip" data-year="1934">1934 FDR RTAA</button>
+                <button class="era-chip" data-year="1940">1940 Recovery</button>
+              </div>
+            </div>
 
             <!-- Active Year Inspector Stats Bar -->
             <div class="chart-active-metrics">
