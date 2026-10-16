@@ -781,7 +781,7 @@ body.document-mode .slide-dots-container {
 
 .svg-wrapper {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   min-height: 380px;
   background: #0b1a14;
   border: 1px solid rgba(255, 255, 255, 0.08);

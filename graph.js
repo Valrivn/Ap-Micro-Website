@@ -19,9 +19,9 @@
   };
 
   // Canvas Dimensions & Margins
-  const width = 720;
+  const width = 800;
   const height = 500;
-  const padding = { top: 65, right: 110, bottom: 80, left: 85 };
+  const padding = { top: 65, right: 165, bottom: 80, left: 85 };
 
   const plotW = width - padding.left - padding.right;
   const plotH = height - padding.top - padding.bottom;
@@ -211,7 +211,7 @@
         <polygon points="${width - padding.right + 25},${height - padding.bottom - 5} ${width - padding.right + 25},${height - padding.bottom + 5} ${width - padding.right + 38},${height - padding.bottom}" fill="#ffffff" />
         
         <!-- X Axis Header Label (Cleanly positioned inside the right margin) -->
-        <text x="${width - padding.right + 30}" y="${height - padding.bottom + 22}" fill="#ffffff" font-size="13" font-weight="700" font-family="'Cinzel', serif">Quantity</text>
+        <text x="${width - 15}" y="${height - padding.bottom + 22}" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end" font-family="'Cinzel', serif" letter-spacing="0.5">Quantity</text>
 
         <!-- AXIS TICKS & LABELS -->
         <!-- Y-Ticks -->
