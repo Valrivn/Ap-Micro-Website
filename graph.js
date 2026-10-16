@@ -2,6 +2,7 @@
  * graph.js - Interactive AP Microeconomics Supply & Demand Tariff Graph
  * Renders an interactive SVG model with dynamic Consumer Surplus (CS),
  * Producer Surplus (PS), Government Tariff Revenue (TR), and Deadweight Loss (DWL).
+ * Fully updated with generous axis padding, no text overlaps, and clean typography.
  */
 
 (function initTariffGraph() {
@@ -17,24 +18,13 @@
     showDWL: true
   };
 
-  // Dimensions & Coordinates
-  const width = 680;
-  const height = 480;
-  const padding = { top: 40, right: 50, bottom: 65, left: 75 };
+  // Canvas Dimensions & Margins
+  const width = 720;
+  const height = 500;
+  const padding = { top: 65, right: 110, bottom: 80, left: 85 };
 
   const plotW = width - padding.left - padding.right;
   const plotH = height - padding.top - padding.bottom;
-
-  // Economic Model Coordinates (normalized 0 to 100)
-  // Demand: P = 92 - 0.76 * Q
-  // Supply: P = 14 + 0.72 * Q
-  // Autarky Eq: 92 - 0.76Q = 14 + 0.72Q => 1.48Q = 78 => Q_eq ~ 52.7, P_eq ~ 52
-  // World Price P_w = 28
-  // Q_s (Supply at P_w): (28 - 14) / 0.72 = 19.4
-  // Q_d (Demand at P_w): (92 - 28) / 0.76 = 84.2
-  // Tariff: t = 14 => P_t = 42
-  // Q_st (Supply at P_t): (42 - 14) / 0.72 = 38.9
-  // Q_dt (Demand at P_t): (92 - 42) / 0.76 = 65.8
 
   function toX(q) {
     return padding.left + (q / 100) * plotW;
@@ -47,28 +37,26 @@
   // Key coordinate points
   const points = {
     origin: { x: toX(0), y: toY(0) },
-    maxP: { x: toX(0), y: toY(100) },
-    maxQ: { x: toX(100), y: toY(0) },
     
     // Demand ends
-    demandTop: { x: toX(4), y: toY(90) },
-    demandBottom: { x: toX(96), y: toY(18) },
+    demandTop: { x: toX(5), y: toY(88) },
+    demandBottom: { x: toX(95), y: toY(18) },
 
     // Supply ends
-    supplyBottom: { x: toX(4), y: toY(16) },
-    supplyTop: { x: toX(96), y: toY(84) },
+    supplyBottom: { x: toX(5), y: toY(16) },
+    supplyTop: { x: toX(95), y: toY(86) },
 
-    // Prices
+    // Prices (normalized 0 to 100)
     P_w: 28,
-    P_t: 42,
+    P_t: 44,
     P_intercept: 92,
-    P_supply0: 14,
+    P_supply0: 12,
 
-    // Quantities
-    Q_s: 19.4,
-    Q_st: 38.9,
-    Q_dt: 65.8,
-    Q_d: 84.2,
+    // Quantities (normalized 0 to 100)
+    Q_s: 20,
+    Q_st: 40,
+    Q_dt: 65,
+    Q_d: 85,
   };
 
   function renderSVG() {
@@ -86,24 +74,20 @@
     // 1. Consumer Surplus (CS)
     let csPoints = '';
     if (isTariff) {
-      // Triangle above P_t under Demand curve
       csPoints = `${toX(0)},${toY(points.P_intercept)} ${toX(0)},${yPt} ${xQdt},${yPt}`;
     } else {
-      // Triangle above P_w under Demand curve
       csPoints = `${toX(0)},${toY(points.P_intercept)} ${toX(0)},${yPw} ${xQd},${yPw}`;
     }
 
     // 2. Producer Surplus (PS)
     let psPoints = '';
     if (isTariff) {
-      // Trapezoid below P_t above Supply
       psPoints = `${toX(0)},${toY(points.P_supply0)} ${xQst},${yPt} ${toX(0)},${yPt}`;
     } else {
-      // Triangle below P_w above Supply
       psPoints = `${toX(0)},${toY(points.P_supply0)} ${xQs},${yPw} ${toX(0)},${yPw}`;
     }
 
-    // 3. Tariff Revenue (TR) - Rectangle between Q_st and Q_dt, between P_w and P_t
+    // 3. Tariff Revenue (TR)
     const trPoints = `${xQst},${yPt} ${xQdt},${yPt} ${xQdt},${yPw} ${xQst},${yPw}`;
 
     // 4. Deadweight Loss 1 (Production Distortion)
@@ -121,7 +105,7 @@
           </pattern>
         </defs>
 
-        <!-- Grid lines -->
+        <!-- Background grid guides -->
         <g stroke="rgba(255, 255, 255, 0.05)" stroke-width="1">
           <line x1="${padding.left}" y1="${toY(20)}" x2="${width - padding.right}" y2="${toY(20)}" />
           <line x1="${padding.left}" y1="${toY(40)}" x2="${width - padding.right}" y2="${toY(40)}" />
@@ -129,18 +113,18 @@
           <line x1="${padding.left}" y1="${toY(80)}" x2="${width - padding.right}" y2="${toY(80)}" />
         </g>
 
-        <!-- SHADED WELFARE SURPLUS AREAS -->
+        <!-- WELFARE SURPLUS AREAS -->
         <!-- Consumer Surplus Area -->
         ${state.showCS ? `
-          <polygon points="${csPoints}" fill="rgba(59, 130, 246, 0.35)" stroke="#3b82f6" stroke-width="1.5">
+          <polygon points="${csPoints}" fill="rgba(59, 130, 246, 0.38)" stroke="#3b82f6" stroke-width="1.8">
             <title>Consumer Surplus (CS): Net welfare enjoyed by domestic buyers</title>
           </polygon>
-          <text x="${toX(12)}" y="${isTariff ? toY(58) : toY(48)}" fill="#93c5fd" font-size="14" font-weight="700" font-family="'JetBrains Mono', monospace">CS</text>
+          <text x="${toX(14)}" y="${isTariff ? toY(60) : toY(50)}" fill="#93c5fd" font-size="14" font-weight="700" font-family="'JetBrains Mono', monospace">CS</text>
         ` : ''}
 
         <!-- Producer Surplus Area -->
         ${state.showPS ? `
-          <polygon points="${psPoints}" fill="rgba(236, 72, 153, 0.35)" stroke="#ec4899" stroke-width="1.5">
+          <polygon points="${psPoints}" fill="rgba(236, 72, 153, 0.38)" stroke="#ec4899" stroke-width="1.8">
             <title>Domestic Producer Surplus (PS): Profit & rent earned by domestic farmers</title>
           </polygon>
           <text x="${toX(8)}" y="${isTariff ? toY(30) : toY(22)}" fill="#f9a8d4" font-size="14" font-weight="700" font-family="'JetBrains Mono', monospace">PS</text>
@@ -148,7 +132,7 @@
 
         <!-- Tariff Revenue (Gov) -->
         ${isTariff && state.showTR ? `
-          <polygon points="${trPoints}" fill="rgba(16, 185, 129, 0.45)" stroke="#10b981" stroke-width="1.5">
+          <polygon points="${trPoints}" fill="rgba(16, 185, 129, 0.45)" stroke="#10b981" stroke-width="1.8">
             <title>Tariff Revenue (T.R.): Collected by federal government = Tariff × Imports</title>
           </polygon>
           <text x="${(xQst + xQdt) / 2 - 16}" y="${(yPt + yPw) / 2 + 5}" fill="#6ee7b7" font-size="13" font-weight="700" font-family="'JetBrains Mono', monospace">T.R.</text>
@@ -170,21 +154,21 @@
         <!-- SUPPLY & DEMAND CURVES -->
         <!-- Demand Curve -->
         <line x1="${points.demandTop.x}" y1="${points.demandTop.y}" x2="${points.demandBottom.x}" y2="${points.demandBottom.y}" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
-        <text x="${points.demandBottom.x - 20}" y="${points.demandBottom.y + 24}" fill="#ffffff" font-size="14" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Demand</text>
+        <text x="${points.demandBottom.x - 10}" y="${points.demandBottom.y + 24}" fill="#ffffff" font-size="14" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Demand</text>
 
         <!-- Supply Curve -->
         <line x1="${points.supplyBottom.x}" y1="${points.supplyBottom.y}" x2="${points.supplyTop.x}" y2="${points.supplyTop.y}" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
-        <text x="${points.supplyTop.x - 20}" y="${points.supplyTop.y - 12}" fill="#ffffff" font-size="14" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Supply</text>
+        <text x="${points.supplyTop.x - 10}" y="${points.supplyTop.y - 12}" fill="#ffffff" font-size="14" font-weight="700" font-family="'Plus Jakarta Sans', sans-serif">Supply</text>
 
         <!-- HORIZONTAL PRICE LINES -->
         <!-- World Price (P_w) -->
         <line x1="${padding.left}" y1="${yPw}" x2="${width - padding.right}" y2="${yPw}" stroke="#6ee7b7" stroke-width="2" stroke-dasharray="6,4" />
-        <text x="${width - padding.right + 8}" y="${yPw + 4}" fill="#6ee7b7" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">world price</text>
+        <text x="${width - padding.right + 10}" y="${yPw + 4}" fill="#6ee7b7" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">world price</text>
 
         <!-- Tariff Price (P_t) -->
         ${isTariff ? `
           <line x1="${padding.left}" y1="${yPt}" x2="${width - padding.right}" y2="${yPt}" stroke="#e5c378" stroke-width="2.5" />
-          <text x="${width - padding.right + 8}" y="${yPt + 4}" fill="#e5c378" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">Price with Tariff</text>
+          <text x="${width - padding.right + 10}" y="${yPt + 4}" fill="#e5c378" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">Price with Tariff</text>
         ` : ''}
 
         <!-- VERTICAL PROJECTION DASHED LINES -->
@@ -201,41 +185,48 @@
           <line x1="${xQdt}" y1="${yPt}" x2="${xQdt}" y2="${height - padding.bottom}" stroke="rgba(255, 255, 255, 0.5)" stroke-dasharray="4,4" />
         ` : ''}
 
-        <!-- IMPORT BRACKET / CALLOUT -->
+        <!-- IMPORT CALLOUT BRACKET -->
         <g>
-          <line x1="${isTariff ? xQst : xQs}" y1="${height - padding.bottom + 22}" x2="${isTariff ? xQdt : xQd}" y2="${height - padding.bottom + 22}" stroke="#a3e3a4" stroke-width="1.8" />
-          <circle cx="${isTariff ? xQst : xQs}" cy="${height - padding.bottom + 22}" r="3" fill="#a3e3a4" />
-          <circle cx="${isTariff ? xQdt : xQd}" cy="${height - padding.bottom + 22}" r="3" fill="#a3e3a4" />
-          <text x="${((isTariff ? xQst : xQs) + (isTariff ? xQdt : xQd)) / 2}" y="${height - padding.bottom + 36}" fill="#a3e3a4" font-size="11" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono', monospace">
+          <line x1="${isTariff ? xQst : xQs}" y1="${height - padding.bottom + 26}" x2="${isTariff ? xQdt : xQd}" y2="${height - padding.bottom + 26}" stroke="#a3e3a4" stroke-width="2" />
+          <circle cx="${isTariff ? xQst : xQs}" cy="${height - padding.bottom + 26}" r="3.5" fill="#a3e3a4" />
+          <circle cx="${isTariff ? xQdt : xQd}" cy="${height - padding.bottom + 26}" r="3.5" fill="#a3e3a4" />
+          <text x="${((isTariff ? xQst : xQs) + (isTariff ? xQdt : xQd)) / 2}" y="${height - padding.bottom + 42}" fill="#a3e3a4" font-size="11" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono', monospace">
             ${isTariff ? 'IMPORTS WITH TARIFF' : 'FREE TRADE IMPORTS'}
           </text>
         </g>
 
         <!-- AXES -->
         <!-- Y Axis (Price) -->
-        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${padding.left}" y2="${padding.top - 10}" stroke="#ffffff" stroke-width="2.5" />
-        <polygon points="${padding.left - 4},${padding.top - 10} ${padding.left + 4},${padding.top - 10} ${padding.left},${padding.top - 20}" fill="#ffffff" />
-        <text x="${padding.left - 45}" y="${padding.top - 10}" fill="#ffffff" font-size="14" font-weight="800" font-family="'Cinzel', serif">PRICE</text>
+        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${padding.left}" y2="${padding.top - 15}" stroke="#ffffff" stroke-width="2.5" />
+        <polygon points="${padding.left - 5},${padding.top - 15} ${padding.left + 5},${padding.top - 15} ${padding.left},${padding.top - 28}" fill="#ffffff" />
+        
+        <!-- Y Axis Header Badge (Placed cleanly ABOVE the axis so it never overlaps curves) -->
+        <g transform="translate(${padding.left - 42}, ${padding.top - 36})">
+          <rect width="84" height="24" rx="4" fill="rgba(15, 34, 27, 0.9)" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+          <text x="42" y="16" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle" font-family="'Cinzel', serif" letter-spacing="1">PRICE</text>
+        </g>
 
         <!-- X Axis (Quantity) -->
-        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right + 20}" y2="${height - padding.bottom}" stroke="#ffffff" stroke-width="2.5" />
-        <polygon points="${width - padding.right + 20},${height - padding.bottom - 4} ${width - padding.right + 20},${height - padding.bottom + 4} ${width - padding.right + 30},${height - padding.bottom}" fill="#ffffff" />
-        <text x="${width - padding.right + 10}" y="${height - padding.bottom + 20}" fill="#ffffff" font-size="13" font-weight="700" font-family="'Cinzel', serif">Quantity</text>
+        <line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right + 25}" y2="${height - padding.bottom}" stroke="#ffffff" stroke-width="2.5" />
+        <polygon points="${width - padding.right + 25},${height - padding.bottom - 5} ${width - padding.right + 25},${height - padding.bottom + 5} ${width - padding.right + 38},${height - padding.bottom}" fill="#ffffff" />
+        
+        <!-- X Axis Header Label (Cleanly positioned inside the right margin) -->
+        <text x="${width - padding.right + 30}" y="${height - padding.bottom + 22}" fill="#ffffff" font-size="13" font-weight="700" font-family="'Cinzel', serif">Quantity</text>
 
         <!-- AXIS TICKS & LABELS -->
         <!-- Y-Ticks -->
-        <text x="${padding.left - 10}" y="${yPw + 4}" fill="#6ee7b7" font-size="13" font-weight="700" text-anchor="end" font-family="'JetBrains Mono', monospace">P</text>
+        <text x="${padding.left - 12}" y="${yPw + 4}" fill="#6ee7b7" font-size="14" font-weight="700" text-anchor="end" font-family="'JetBrains Mono', monospace">P</text>
         ${isTariff ? `
-          <text x="${padding.left - 10}" y="${yPt + 4}" fill="#e5c378" font-size="13" font-weight="700" text-anchor="end" font-family="'JetBrains Mono', monospace">P<tspan baseline-shift="sub" font-size="10">T</tspan></text>
+          <text x="${padding.left - 12}" y="${yPt + 4}" fill="#e5c378" font-size="14" font-weight="700" text-anchor="end" font-family="'JetBrains Mono', monospace">P<tspan baseline-shift="sub" font-size="11">T</tspan></text>
         ` : ''}
 
         <!-- X-Ticks -->
-        <text x="${xQs}" y="${height - padding.bottom + 16}" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="9">s</tspan></text>
-        <text x="${xQd}" y="${height - padding.bottom + 16}" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="9">d</tspan></text>
+        <text x="${xQs}" y="${height - padding.bottom + 18}" fill="#ffffff" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">s</tspan></text>
+        <text x="${xQd}" y="${height - padding.bottom + 18}" fill="#ffffff" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">d</tspan></text>
 
         ${isTariff ? `
-          <text x="${xQst}" y="${height - padding.bottom + 16}" fill="#e5c378" font-size="12" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="9">st</tspan></text>
-          <text x="${xQdt}" y="${height - padding.bottom + 16}" fill="#e5c378" font-size="12" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="9">dt</tspan></text>
+          <text x="${xQst}" y="${height - padding.bottom + 18}" fill="#e5c378" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">st</tspan></text>
+          <text x="${xQdt}" y="${height - padding.bottom + 18}" fill="#e5c378" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">dt</tspan></text>
         ` : ''}
       </svg>
     `;
@@ -245,7 +236,7 @@
 
   // Setup Event Listeners for Toolbar
   document.querySelectorAll('.toggle-chip').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
       document.querySelectorAll('.toggle-chip').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       state.mode = btn.dataset.mode;

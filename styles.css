@@ -1,13 +1,15 @@
 /* ==========================================================================
    Smoot-Hawley Tariff AP Micro Presentation Website
    Design Direction: Archival Museum / 1930s Financial & Economic History
+   Elevated with Authentic Hand-Drawn Chalk & Ribbon Aesthetics
    ========================================================================== */
 
 :root {
   /* Color Palette */
   --bg-dark: #0f221b;
   --bg-deep-green: #152e25;
-  --bg-card-dark: #1b382e;
+  --bg-card-dark: #18332a;
+  --bg-card-inner: #11261e;
   --bg-parchment: #f6f4ec;
   --bg-parchment-subtle: #eae6d6;
   --border-parchment: #d6d0bc;
@@ -40,6 +42,7 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-doodle: 'Caveat', cursive;
 
   /* Header / Footer Heights */
   --header-height: 58px;
@@ -68,9 +71,18 @@ html {
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at 50% 20%, #1c3b30 0%, #0f221b 100%);
+  background: radial-gradient(circle at 50% 20%, #1e4033 0%, #0f221b 100%);
   background-attachment: fixed;
   overflow-x: hidden;
+}
+
+sub {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  bottom: -0.25em;
+  font-family: var(--font-mono);
 }
 
 /* ==========================================================================
@@ -79,8 +91,8 @@ body {
 
 .site-header {
   height: var(--header-height);
-  background: rgba(15, 34, 27, 0.92);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 34, 27, 0.94);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
@@ -121,7 +133,7 @@ body {
 .deck-controls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .control-btn {
@@ -165,7 +177,7 @@ body {
   width: 1px;
   height: 20px;
   background: rgba(255, 255, 255, 0.15);
-  margin: 0 0.4rem;
+  margin: 0 0.35rem;
 }
 
 .mode-pill-btn {
@@ -190,6 +202,17 @@ body {
   transform: translateY(-1px);
 }
 
+.canva-pill-btn {
+  background: rgba(158, 226, 165, 0.12);
+  border-color: rgba(158, 226, 165, 0.35);
+  color: var(--accent-sage);
+}
+
+.canva-pill-btn:hover {
+  background: rgba(158, 226, 165, 0.22);
+  border-color: var(--accent-sage);
+}
+
 /* Progress Track */
 .deck-progress-track {
   position: fixed;
@@ -211,7 +234,6 @@ body {
    Deck Mode vs Document Scroll Mode
    ========================================================================== */
 
-/* Deck Mode (Default): full-screen slides, only active is shown */
 body.deck-mode {
   height: 100vh;
   overflow: hidden;
@@ -225,7 +247,7 @@ body.deck-mode .slides-viewport {
   right: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -234,7 +256,7 @@ body.deck-mode .slides-viewport {
 body.deck-mode .slide-section {
   display: none;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1320px;
   margin: 0 auto;
   animation: slideFadeIn 0.32s ease forwards;
 }
@@ -254,7 +276,6 @@ body.deck-mode .slide-section.active {
   }
 }
 
-/* Document Mode: all slides displayed continuously in a reading feed */
 body.document-mode {
   height: auto;
   overflow-y: auto;
@@ -262,7 +283,7 @@ body.document-mode {
 
 body.document-mode .slides-viewport {
   position: static;
-  max-width: 1100px;
+  max-width: 1150px;
   margin: calc(var(--header-height) + 2rem) auto calc(var(--footer-height) + 2rem);
   padding: 0 1.5rem;
 }
@@ -271,8 +292,8 @@ body.document-mode .slide-section {
   display: block !important;
   opacity: 1 !important;
   transform: none !important;
-  margin-bottom: 3.5rem;
-  padding-bottom: 3rem;
+  margin-bottom: 4rem;
+  padding-bottom: 3.5rem;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
 }
 
@@ -284,6 +305,50 @@ body.document-mode .slide-dots-container {
 }
 
 /* ==========================================================================
+   Artistic Hand-Drawn Flourishes & Corner Ribbons
+   ========================================================================== */
+
+.slide-inner {
+  position: relative;
+}
+
+.doodle-corner {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.75;
+}
+
+.doodle-top-left {
+  top: -15px;
+  left: -20px;
+}
+
+.doodle-bottom-right {
+  bottom: -20px;
+  right: -20px;
+}
+
+.ribbon-decor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ribbon-top-right {
+  top: -10px;
+  right: -10px;
+}
+
+.brush-title-wrap {
+  display: inline-block;
+  background: rgba(16, 45, 34, 0.8);
+  border-left: 4px solid var(--accent-sage);
+  padding: 0.2rem 0.8rem;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ==========================================================================
    Cards, Badges & Archival Museum Styling
    ========================================================================== */
 
@@ -291,7 +356,7 @@ body.document-mode .slide-dots-container {
   background: var(--bg-card-dark);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 1.4rem;
   box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
   position: relative;
 }
@@ -344,7 +409,9 @@ body.document-mode .slide-dots-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .slide-title {
@@ -355,35 +422,15 @@ body.document-mode .slide-dots-container {
   color: var(--text-on-dark);
 }
 
-.ghost-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--accent-sage);
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.ghost-btn:hover {
-  background: rgba(158, 226, 165, 0.12);
-  border-color: var(--accent-sage);
-  transform: translateY(-1px);
-}
-
 /* ==========================================================================
    SLIDE 1: Title, Background & Thesis
    ========================================================================== */
 
 .slide1-hero {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
+  position: relative;
+  z-index: 2;
 }
 
 .pre-title {
@@ -392,20 +439,20 @@ body.document-mode .slide-dots-container {
   letter-spacing: 0.2em;
   font-weight: 600;
   color: var(--accent-sage);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .main-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
+  gap: 0.3rem;
+  margin-bottom: 0.85rem;
 }
 
 .sub-label {
   font-family: var(--font-sans);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 500;
   color: var(--accent-mint);
   letter-spacing: 0.05em;
@@ -417,8 +464,8 @@ body.document-mode .slide-dots-container {
   font-weight: 800;
   letter-spacing: 0.02em;
   color: #ffffff;
-  max-width: 900px;
-  line-height: 1.2;
+  max-width: 920px;
+  line-height: 1.22;
 }
 
 .authors-badge {
@@ -427,23 +474,23 @@ body.document-mode .slide-dots-container {
   gap: 0.5rem;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.95rem;
   border-radius: 30px;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-on-dark-muted);
 }
 
 .slide1-grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .background-card h2,
 .thesis-card h2 {
   font-family: var(--font-display);
   font-size: 1.3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   color: var(--text-on-dark);
 }
 
@@ -465,8 +512,8 @@ body.document-mode .slide-dots-container {
 
 .vintage-timeline > li {
   position: relative;
-  margin-bottom: 1.2rem;
-  font-size: 0.95rem;
+  margin-bottom: 1.15rem;
+  font-size: 0.93rem;
   line-height: 1.45;
   color: var(--text-on-dark);
 }
@@ -485,7 +532,7 @@ body.document-mode .slide-dots-container {
 .nested-sublist {
   list-style-type: disc;
   margin-left: 1.25rem;
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
   color: var(--text-on-dark-muted);
   font-size: 0.88rem;
 }
@@ -495,7 +542,7 @@ body.document-mode .slide-dots-container {
 }
 
 .thesis-card {
-  background: linear-gradient(145deg, #1d3e33 0%, #152f26 100%);
+  background: linear-gradient(145deg, #1f4236 0%, #152f26 100%);
   border: 1px solid rgba(229, 195, 120, 0.35);
   display: flex;
   flex-direction: column;
@@ -504,7 +551,7 @@ body.document-mode .slide-dots-container {
 
 .thesis-quote-container {
   position: relative;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
 }
 
 .quote-mark {
@@ -514,7 +561,7 @@ body.document-mode .slide-dots-container {
   color: var(--accent-gold);
   opacity: 0.3;
   position: absolute;
-  top: -10px;
+  top: -15px;
   left: -8px;
 }
 
@@ -530,9 +577,9 @@ body.document-mode .slide-dots-container {
 }
 
 .thesis-footer {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 0.85rem;
+  padding-top: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -555,25 +602,57 @@ body.document-mode .slide-dots-container {
 }
 
 /* ==========================================================================
-   SLIDE 2: Domestic Market (Interactive SVG AP Micro Graph)
-   ========================================================================== */
+   SLIDE 2: Domestic Market (In-place Tab Switcher & SVG Graph)
+   ========================================================================= */
+
+.model-view-tabs {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.model-tab-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-on-dark-muted);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: var(--transition-smooth);
+}
+
+.model-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.model-tab-btn.active {
+  background: rgba(229, 195, 120, 0.15);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
 
 .domestic-market-layout {
   display: grid;
   grid-template-columns: 1.25fr 1fr;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .graph-stage-container {
   display: flex;
   flex-direction: column;
-  background: #11261e;
+  background: var(--bg-card-inner);
 }
 
 .graph-toolbar {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.65rem;
   padding-bottom: 0.85rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 0.85rem;
@@ -583,7 +662,7 @@ body.document-mode .slide-dots-container {
 .surplus-filters {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   flex-wrap: wrap;
 }
 
@@ -593,7 +672,7 @@ body.document-mode .slide-dots-container {
   font-weight: 600;
   color: var(--text-on-dark-muted);
   letter-spacing: 0.05em;
-  margin-right: 0.25rem;
+  margin-right: 0.2rem;
 }
 
 .toggle-chip,
@@ -604,7 +683,7 @@ body.document-mode .slide-dots-container {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.25rem 0.6rem;
+  padding: 0.28rem 0.65rem;
   border-radius: 4px;
   cursor: pointer;
   transition: var(--transition-smooth);
@@ -649,7 +728,7 @@ body.document-mode .slide-dots-container {
 .svg-wrapper {
   width: 100%;
   aspect-ratio: 4 / 3;
-  min-height: 350px;
+  min-height: 360px;
   background: #0b1a14;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
@@ -667,7 +746,7 @@ body.document-mode .slide-dots-container {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
   padding-top: 0.75rem;
   font-size: 0.74rem;
   color: var(--text-on-dark-muted);
@@ -704,13 +783,13 @@ body.document-mode .slide-dots-container {
   font-size: 1.15rem;
   color: var(--accent-gold);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.45rem;
 }
 
 .prompt-block {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
   border-left: 3px solid var(--accent-sage);
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   border-radius: 0 6px 6px 0;
 }
 
@@ -755,8 +834,8 @@ body.document-mode .slide-dots-container {
 }
 
 .quantity-bullets li {
-  margin-bottom: 0.35rem;
-  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.86rem;
   line-height: 1.45;
 }
 
@@ -790,6 +869,49 @@ body.document-mode .slide-dots-container {
   background: rgba(245, 158, 11, 0.08);
 }
 
+/* Canva Inspiration Showcase */
+.canva-inspiration-showcase {
+  background: var(--bg-card-inner);
+}
+
+.inspiration-header {
+  margin-bottom: 1rem;
+}
+
+.badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.inspiration-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.inspiration-sub {
+  font-size: 0.85rem;
+  color: var(--text-on-dark-muted);
+  line-height: 1.5;
+}
+
+.inspiration-image-frame {
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.inspiration-full-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ==========================================================================
    SLIDE 3: The Exporting Country
    ========================================================================== */
@@ -797,7 +919,7 @@ body.document-mode .slide-dots-container {
 .exporting-layout {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .text-narrative-card {
@@ -962,7 +1084,7 @@ body.document-mode .slide-dots-container {
 }
 
 /* ==========================================================================
-   SLIDE 4: Did It Work? & Interactive Political Cartoon
+   SLIDE 4: Did It Work? & Political Cartoon
    ========================================================================== */
 
 .verdict-layout {
@@ -1007,9 +1129,8 @@ body.document-mode .slide-dots-container {
   color: var(--text-on-dark);
 }
 
-/* Cartoon Stage */
 .cartoon-stage-card {
-  background: #11261e;
+  background: var(--bg-card-inner);
 }
 
 .cartoon-header-row {
@@ -1064,7 +1185,6 @@ body.document-mode .slide-dots-container {
   display: block;
 }
 
-/* Hotspot Pins */
 .hotspot-pin {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -1256,13 +1376,171 @@ body.document-mode .slide-dots-container {
 }
 
 /* ==========================================================================
-   SLIDE 5: Policy Recommendations & Sources (The Solution)
+   SLIDE 5: Quality of Life & Longitudinal Trade Impact
+   ========================================================================== */
+
+.qol-grid-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.4rem;
+}
+
+.trade-chart-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card-inner);
+}
+
+.chart-card-header {
+  margin-bottom: 0.75rem;
+}
+
+.chart-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--text-on-dark);
+  margin-bottom: 0.2rem;
+}
+
+.chart-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-on-dark-muted);
+}
+
+.trade-chart-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 280px;
+  background: #0b1a14;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.trade-chart-wrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-active-metrics {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.active-metric-chip {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.active-metric-chip.full-note {
+  flex-basis: 100%;
+  background: rgba(229, 195, 120, 0.08);
+  border-color: rgba(229, 195, 120, 0.25);
+}
+
+.m-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-on-dark-muted);
+}
+
+.m-val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-sage);
+}
+
+.m-val.highlight {
+  color: var(--accent-gold);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.m-note {
+  font-size: 0.8rem;
+  color: #fff9ea;
+}
+
+.qol-metrics-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.qol-index-card {
+  padding: 1.15rem;
+  background: var(--bg-card-dark);
+}
+
+.qol-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.qol-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-gold);
+}
+
+.qol-delta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+}
+
+.qol-delta.negative {
+  background: rgba(220, 38, 38, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+}
+
+.qol-delta.warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.qol-index-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text-on-dark);
+  margin-bottom: 0.35rem;
+}
+
+.qol-desc {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--text-on-dark-muted);
+}
+
+/* ==========================================================================
+   SLIDE 6: Policy Recommendations & Sources (The Solution)
    ========================================================================== */
 
 .solution-grid {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .solution-left-col {
@@ -1272,7 +1550,7 @@ body.document-mode .slide-dots-container {
 }
 
 .fdr-card {
-  background: linear-gradient(145deg, #1d3e33 0%, #152f26 100%);
+  background: linear-gradient(145deg, #1f4236 0%, #152f26 100%);
   border: 1px solid rgba(229, 195, 120, 0.3);
 }
 
@@ -1362,9 +1640,8 @@ body.document-mode .slide-dots-container {
   color: var(--accent-sage);
 }
 
-/* State Quote Card */
 .quotation-card {
-  background: #11261e;
+  background: var(--bg-card-inner);
   border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
@@ -1452,8 +1729,8 @@ body.document-mode .slide-dots-container {
 
 .deck-footer {
   height: var(--footer-height);
-  background: rgba(15, 34, 27, 0.92);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 34, 27, 0.94);
+  backdrop-filter: blur(14px);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: fixed;
   bottom: 0;
@@ -1521,14 +1798,14 @@ body.document-mode .slide-dots-container {
 }
 
 /* ==========================================================================
-   Modals
+   Modals & Full Canva Gallery Carousel
    ========================================================================== */
 
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
   z-index: 200;
   display: flex;
   align-items: center;
@@ -1589,13 +1866,119 @@ body.document-mode .slide-dots-container {
   overflow-y: auto;
 }
 
-.archival-graph-modal-img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  display: block;
+/* Canva Gallery Carousel */
+.canva-gallery-modal-card {
+  max-width: 1100px;
 }
 
+.canva-gallery-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gallery-viewer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #000;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.gallery-nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  width: 44px;
+  height: 60px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.gallery-nav-btn:hover {
+  background: var(--accent-sage);
+  color: #0f221b;
+}
+
+.gallery-current-slide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-display-img {
+  max-height: 55vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.gallery-slide-caption {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.thumb-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 90px;
+  transition: var(--transition-smooth);
+}
+
+.thumb-btn img {
+  width: 80px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.thumb-btn span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-on-dark-muted);
+}
+
+.thumb-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.thumb-btn.active {
+  border-color: var(--accent-gold);
+  background: rgba(229, 195, 120, 0.15);
+}
+
+.thumb-btn.active span {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* Help Modal */
 .help-modal-card {
   max-width: 650px;
 }
@@ -1668,6 +2051,7 @@ body.document-mode .slide-dots-container {
   .exporting-layout,
   .verdict-cards-grid,
   .cartoon-interactive-wrapper,
+  .qol-grid-layout,
   .solution-grid {
     grid-template-columns: 1fr;
   }
@@ -1677,6 +2061,10 @@ body.document-mode .slide-dots-container {
   }
 
   .footer-right {
+    display: none;
+  }
+
+  .doodle-corner {
     display: none;
   }
 }
@@ -1698,6 +2086,10 @@ body.document-mode .slide-dots-container {
   }
 
   .brand .project-title {
+    display: none;
+  }
+
+  .canva-pill-btn span {
     display: none;
   }
 }

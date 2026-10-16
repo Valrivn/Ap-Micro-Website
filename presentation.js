@@ -1,11 +1,11 @@
 /**
  * presentation.js - Presentation Deck & View Orchestrator
- * Supports keyboard navigation, fullscreen, dual-mode (deck vs document scroll),
- * touch swipe, and modal dialogs.
+ * Supports 6 slides, keyboard navigation, fullscreen, dual-mode (deck vs document scroll),
+ * in-place Canva tabs on Slide 2, full 7-slide Canva carousel gallery, and touch swipes.
  */
 
 (function initPresentation() {
-  const TOTAL_SLIDES = 5;
+  const TOTAL_SLIDES = 6;
   let currentSlide = 1;
   let isDocumentMode = false;
 
@@ -25,11 +25,28 @@
   const btnHelp = document.getElementById('btn-help');
 
   // Modals
-  const graphModal = document.getElementById('graph-modal');
   const helpModal = document.getElementById('help-modal');
-  const btnOpenGraph = document.getElementById('btn-open-original-graph');
-  const btnCloseGraph = document.getElementById('btn-close-modal');
   const btnCloseHelp = document.getElementById('btn-close-help');
+
+  const canvaGalleryModal = document.getElementById('canva-gallery-modal');
+  const btnOpenCanvaGallery = document.getElementById('btn-open-canva-gallery');
+  const btnCloseCanvaGallery = document.getElementById('btn-close-canva-gallery');
+  const btnGalleryPrev = document.getElementById('btn-gallery-prev');
+  const btnGalleryNext = document.getElementById('btn-gallery-next');
+  const galleryImg = document.getElementById('gallery-img');
+  const galleryCaption = document.getElementById('gallery-caption');
+  const thumbBtns = document.querySelectorAll('.thumb-btn');
+
+  let currentCanvaSlide = 1;
+  const canvaSlideTitles = [
+    'Slide 1: Title & Authors (Smoot-Hawley)',
+    'Slide 2: Background (Hoover, 1920s Farm Crisis)',
+    'Slide 3: Core Thesis Statement',
+    'Slide 4: Domestic Market & Hand-drawn AP Micro Graph',
+    'Slide 5: The Exporting Country (Swiss Watches & Cuban Sugar)',
+    'Slide 6: Did It Work? (Banking & Agricultural Defaults)',
+    'Slide 7: The Solution & Sources (FDR, RTAA & GATT)'
+  ];
 
   function updateSlide(index) {
     if (index < 1) index = 1;
@@ -105,7 +122,80 @@
     }
   }
 
-  // Event Listeners
+  // Slide 2 Tab Switcher (Vector Model vs Canva Slide 4)
+  const tabBtnVector = document.getElementById('tab-btn-vector');
+  const tabBtnCanva = document.getElementById('tab-btn-canva');
+  const paneVector = document.getElementById('pane-vector');
+  const paneCanva = document.getElementById('pane-canva');
+
+  if (tabBtnVector && tabBtnCanva && paneVector && paneCanva) {
+    tabBtnVector.addEventListener('click', () => {
+      tabBtnVector.classList.add('active');
+      tabBtnCanva.classList.remove('active');
+      paneVector.style.display = 'block';
+      paneCanva.style.display = 'none';
+    });
+
+    tabBtnCanva.addEventListener('click', () => {
+      tabBtnCanva.classList.add('active');
+      tabBtnVector.classList.remove('active');
+      paneCanva.style.display = 'block';
+      paneVector.style.display = 'none';
+    });
+  }
+
+  // Canva Gallery Carousel Logic
+  function setCanvaGallerySlide(idx) {
+    if (idx < 1) idx = 1;
+    if (idx > 7) idx = 7;
+    currentCanvaSlide = idx;
+
+    if (galleryImg) {
+      galleryImg.src = `assets/canva-slide-${currentCanvaSlide}.png`;
+    }
+    if (galleryCaption) {
+      galleryCaption.textContent = canvaSlideTitles[currentCanvaSlide - 1];
+    }
+
+    thumbBtns.forEach((btn) => {
+      const bIdx = parseInt(btn.dataset.idx, 10);
+      btn.classList.toggle('active', bIdx === currentCanvaSlide);
+    });
+  }
+
+  if (btnOpenCanvaGallery && canvaGalleryModal) {
+    btnOpenCanvaGallery.addEventListener('click', () => {
+      canvaGalleryModal.style.display = 'flex';
+      setCanvaGallerySlide(currentCanvaSlide);
+    });
+  }
+
+  if (btnCloseCanvaGallery && canvaGalleryModal) {
+    btnCloseCanvaGallery.addEventListener('click', () => {
+      canvaGalleryModal.style.display = 'none';
+    });
+  }
+
+  if (btnGalleryPrev) {
+    btnGalleryPrev.addEventListener('click', () => {
+      setCanvaGallerySlide(currentCanvaSlide > 1 ? currentCanvaSlide - 1 : 7);
+    });
+  }
+
+  if (btnGalleryNext) {
+    btnGalleryNext.addEventListener('click', () => {
+      setCanvaGallerySlide(currentCanvaSlide < 7 ? currentCanvaSlide + 1 : 1);
+    });
+  }
+
+  thumbBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx, 10);
+      setCanvaGallerySlide(idx);
+    });
+  });
+
+  // Event Listeners for Nav Controls
   if (btnPrev) btnPrev.addEventListener('click', prevSlide);
   if (btnNext) btnNext.addEventListener('click', nextSlide);
   if (btnViewToggle) btnViewToggle.addEventListener('click', toggleViewMode);
@@ -119,17 +209,7 @@
     });
   });
 
-  // Modal Handlers
-  if (btnOpenGraph && graphModal) {
-    btnOpenGraph.addEventListener('click', () => {
-      graphModal.style.display = 'flex';
-    });
-  }
-  if (btnCloseGraph && graphModal) {
-    btnCloseGraph.addEventListener('click', () => {
-      graphModal.style.display = 'none';
-    });
-  }
+  // Help Modal Handlers
   if (btnHelp && helpModal) {
     btnHelp.addEventListener('click', () => {
       helpModal.style.display = 'flex';
@@ -142,7 +222,7 @@
   }
 
   // Close modals on clicking overlay background
-  [graphModal, helpModal].forEach((modal) => {
+  [helpModal, canvaGalleryModal].forEach((modal) => {
     if (modal) {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -154,10 +234,10 @@
 
   // Keyboard Navigation
   window.addEventListener('keydown', (e) => {
-    // If modal open, Escape closes it
+    // Escape closes modals
     if (e.key === 'Escape') {
-      if (graphModal) graphModal.style.display = 'none';
       if (helpModal) helpModal.style.display = 'none';
+      if (canvaGalleryModal) canvaGalleryModal.style.display = 'none';
       return;
     }
 
@@ -173,7 +253,7 @@
       toggleViewMode();
     } else if (e.key === '?' || (e.shiftKey && e.key === '/')) {
       if (helpModal) helpModal.style.display = 'flex';
-    } else if (e.key >= '1' && e.key <= '5') {
+    } else if (e.key >= '1' && e.key <= '6') {
       updateSlide(parseInt(e.key, 10));
     }
   });
