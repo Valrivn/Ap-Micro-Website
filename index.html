@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smoot-Hawley: Did Protectionism Protect American Farmers? | AP Micro</title>
+  
+  <!-- Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="deck-mode" id="app-body">
+
+  <!-- Top Navigation & Presentation Toolbar -->
+  <header class="site-header">
+    <div class="brand">
+      <span class="badge">AP MICROECONOMICS</span>
+      <span class="project-title">Smoot-Hawley Tariff Case Study</span>
+    </div>
+
+    <!-- Presentation Controls -->
+    <div class="deck-controls">
+      <button id="btn-prev" class="control-btn" aria-label="Previous Slide" title="Previous Slide (← / Up)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+
+      <div class="slide-indicator" title="Current Slide">
+        <span id="current-slide-num">1</span>
+        <span class="separator">/</span>
+        <span id="total-slide-num">5</span>
+      </div>
+
+      <button id="btn-next" class="control-btn" aria-label="Next Slide" title="Next Slide (→ / Down / Space)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="divider"></div>
+
+      <!-- View Switcher: Slide Deck vs Document Scroll -->
+      <button id="btn-view-toggle" class="mode-pill-btn" title="Toggle Document / Presentation Mode">
+        <svg class="icon-deck" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="14" x="3" y="3" rx="2"/><path d="M7 21h10"/><path d="M12 17v4"/></svg>
+        <span id="view-mode-label">Document View</span>
+      </button>
+
+      <!-- Fullscreen Toggle -->
+      <button id="btn-fullscreen" class="control-btn" title="Toggle Fullscreen (F)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+      </button>
+
+      <!-- Help / Shortcuts -->
+      <button id="btn-help" class="control-btn" title="Keyboard Shortcuts & Teacher Guide (?)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Progress Bar across top -->
+  <div class="deck-progress-track">
+    <div id="deck-progress-bar" class="deck-progress-bar" style="width: 20%;"></div>
+  </div>
+
+  <!-- Main Slides Container -->
+  <main class="slides-viewport" id="slides-viewport">
+
+    <!-- SLIDE 1: Title, Background & Thesis -->
+    <section class="slide-section active" id="slide-1" data-index="1">
+      <div class="slide-inner">
+        <!-- Hero Title Banner -->
+        <div class="slide1-hero">
+          <div class="pre-title">AP MICROECONOMICS CASE STUDY</div>
+          <h1 class="main-title">
+            <span class="sub-label">Smoot-Hawley:</span>
+            <span class="hero-quote">DID PROTECTIONISM PROTECT AMERICAN FARMERS?</span>
+          </h1>
+          <div class="authors-badge">
+            <span class="author-icon">👥</span>
+            <span class="authors-names">Miguel S, Chlono K, Hayden W, Ramata D</span>
+          </div>
+        </div>
+
+        <!-- 2-Column Layout: Background Timeline & Framed Thesis -->
+        <div class="slide1-grid">
+          <!-- Background Card -->
+          <div class="archival-card background-card">
+            <div class="card-header-label">
+              <span class="card-tag">HISTORICAL CONTEXT</span>
+              <h2>Background</h2>
+            </div>
+
+            <ul class="vintage-timeline">
+              <li>
+                <span class="timeline-dot"></span>
+                <div class="timeline-content">
+                  <strong>Signed into law in June 1930 (Hoover)</strong>
+                  <ul class="nested-sublist">
+                    <li>Farmers faced failing crop prices 1920s</li>
+                    <li>increased competition with European markets</li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <span class="timeline-dot"></span>
+                <div class="timeline-content">
+                  <strong>Intended to protect American farmers and indutries from foriegn competition</strong>
+                </div>
+              </li>
+              <li>
+                <span class="timeline-dot"></span>
+                <div class="timeline-content">
+                  <strong>Raised tariffs on a wide range of imported goods (textiles, agriculture, metals, household goods, etc.</strong>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Thesis Card -->
+          <div class="archival-card thesis-card">
+            <div class="card-header-label">
+              <span class="card-tag gold">CORE ARGUMENT</span>
+              <h2>THESIS</h2>
+            </div>
+
+            <div class="thesis-quote-container">
+              <div class="quote-mark">“</div>
+              <blockquote class="thesis-text">
+                THE SMOOT-HAWLEY ACT FAILED TO PROVIDE PROTECTION TO FARMERS AS IT LED TO RETALIATORY TARIFFS AND REDUCED EXPORTERS’ ACCESS TO FOREIGN MARKETS, ULTIMATELY FAILING LONG-TERM IN OFFSETTING THE RECENT STOCKMARKET 1929 CRASH AND BOLSTERING DOMESTIC EMPLOYMENT AND MANUFACTURING.
+              </blockquote>
+            </div>
+
+            <div class="thesis-footer">
+              <div class="stamp-badge">1930 TARIFF ACT EVALUATION</div>
+              <p class="thesis-hint">Navigate to Slide 2 to inspect the domestic market supply & demand welfare model.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 2: The Domestic Market (Interactive AP Micro Graph) -->
+    <section class="slide-section" id="slide-2" data-index="2">
+      <div class="slide-inner">
+        <div class="slide-heading-row">
+          <div>
+            <span class="card-tag">AP MICRO WELFARE ANALYSIS</span>
+            <h2 class="slide-title">Domestic Market</h2>
+          </div>
+          <div class="heading-actions">
+            <button id="btn-open-original-graph" class="ghost-btn" title="View Hand-Drawn Original Diagram from Canva">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>View Original Hand-Drawn Slide</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="domestic-market-layout">
+          <!-- Left: Interactive AP Micro SVG Graph -->
+          <div class="graph-stage-container archival-card">
+            <div class="graph-toolbar">
+              <div class="tariff-toggle-group">
+                <span class="toggle-label">MARKET SCENARIO:</span>
+                <button class="toggle-chip" data-mode="free">World Free Trade</button>
+                <button class="toggle-chip active" data-mode="tariff">With Tariff ($P_T$)</button>
+              </div>
+              <div class="surplus-filters">
+                <span class="toggle-label">HIGHLIGHT AREAS:</span>
+                <button class="filter-chip cs active" data-area="cs" title="Consumer Surplus">CS (Blue)</button>
+                <button class="filter-chip ps active" data-area="ps" title="Producer Surplus">PS (Pink)</button>
+                <button class="filter-chip tr active" data-area="tr" title="Tariff Revenue">Gov Revenue (Green)</button>
+                <button class="filter-chip dwl active" data-area="dwl" title="Deadweight Loss">DWL (Striped)</button>
+              </div>
+            </div>
+
+            <!-- SVG Graph Container -->
+            <div class="svg-wrapper" id="svg-graph-container">
+              <!-- Dynamically populated by graph.js -->
+            </div>
+
+            <!-- Legend Bar -->
+            <div class="graph-legend">
+              <div class="legend-item"><span class="legend-color cs-color"></span> CS (Consumer Surplus)</div>
+              <div class="legend-item"><span class="legend-color ps-color"></span> PS (Domestic Producer Surplus)</div>
+              <div class="legend-item"><span class="legend-color tr-color"></span> T.R. (Tariff Revenue to Government)</div>
+              <div class="legend-item"><span class="legend-color dwl-color"></span> DWL (Deadweight Loss Inefficiency)</div>
+            </div>
+          </div>
+
+          <!-- Right: Verbatim Prompts & AP Microeconomic Economic Impact Breakdown -->
+          <div class="market-analysis-panel archival-card">
+            <h3 class="panel-title">Economic Shifts & Welfare Effects</h3>
+
+            <div class="prompt-block">
+              <div class="prompt-header">
+                <span class="arrow-indicator">⟶</span>
+                <h4 class="prompt-title">PRICE:</h4>
+              </div>
+              <div class="prompt-body">
+                <p class="impact-stat">Domestic Price increases from World Price (<strong>$P$</strong>) up to Tariff Price (<strong>$P_T$</strong>).</p>
+                <p class="impact-sub">Imported goods are artificially inflated, raising living costs for domestic consumers and prices of imported agricultural inputs.</p>
+              </div>
+            </div>
+
+            <div class="prompt-block">
+              <div class="prompt-header">
+                <span class="arrow-indicator">⟶</span>
+                <h4 class="prompt-title">QUANTITY:</h4>
+              </div>
+              <div class="prompt-body">
+                <ul class="quantity-bullets">
+                  <li><strong>Domestic Supply:</strong> Expands from <strong>$Q_s$</strong> to <strong>$Q_{st}$</strong> as domestic producers capture market share.</li>
+                  <li><strong>Domestic Demand:</strong> Contracts from <strong>$Q_d$</strong> down to <strong>$Q_{dt}$</strong> due to the law of demand at higher prices.</li>
+                  <li><strong>Total Imports:</strong> Drastically shrink from $(Q_d - Q_s)$ down to $(Q_{dt} - Q_{st})$.</li>
+                  <li><strong>Net Deadweight Loss (DWL):</strong> Two triangular losses emerge — overproduction by higher-cost domestic suppliers (production inefficiency) and lost consumer utility (underconsumption).</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="welfare-summary-box">
+              <div class="summary-chip"><strong>Consumer Surplus:</strong> Greatly Reduced 📉</div>
+              <div class="summary-chip"><strong>Domestic Producer Surplus:</strong> Expanded 📈</div>
+              <div class="summary-chip"><strong>Government Revenue:</strong> Area T.R. captured 🏛️</div>
+              <div class="summary-chip warning"><strong>Society Welfare:</strong> Net Negative (DWL created) ⚠️</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 3: The Exporting Country & Retaliation -->
+    <section class="slide-section" id="slide-3" data-index="3">
+      <div class="slide-inner">
+        <div class="slide-heading-row">
+          <div>
+            <span class="card-tag">GLOBAL RETALIATION & IMPACTS</span>
+            <h2 class="slide-title">THE EXPORTING COUNTRY</h2>
+          </div>
+          <div class="pill-stats">OVER 20,000 IMPORTED GOODS TAXED</div>
+        </div>
+
+        <div class="exporting-layout">
+          <!-- Left Column: Verbatim Narrative from Slide -->
+          <div class="archival-card text-narrative-card">
+            <div class="narrative-segment">
+              <p class="lead-text">
+                Following Herbert Hoover’s passing of the Smoot-Hawley Tarrif Act, raising tariffs on over <strong>20,000 imported goods</strong> in the ultimately unsuccesful effort to shield American industries from ecnomic collapse, nations across the world would retaliate by putting tarrifs on United States’ exports in what would be the <strong>Tarrif War of the 1930s</strong>.
+              </p>
+            </div>
+
+            <div class="narrative-segment secondary">
+              <p>
+                Nations across the world, ranging in products based on localized industries that the United States demaned so greatly, would impleement heavy tarrifs as a means of retalations to Hoovers’s tarif. From Switzerland’s iconic Swiss watches and luxurious silk textiles, to Cuba’s staple sugar and Havana cigars that were so popular at the time
+              </p>
+            </div>
+
+            <!-- Slide Links Preserved -->
+            <div class="slide-resource-links">
+              <span class="links-label">Referenced Sources & Studies:</span>
+              <div class="links-row">
+                <a href="https://www.investopedia.com/terms/s/smoot-hawley-tariff-act.asp" target="_blank" rel="noopener" class="source-link-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  <span>How Tariffs Under the Smoot-Hawley Act Triggered a Trade War</span>
+                </a>
+                <a href="https://history.state.gov/milestones/1921-1936/protectionism" target="_blank" rel="noopener" class="source-link-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                  <span>Smoot-Hawley Tariff Act</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Trade War Spotlight Cards -->
+          <div class="retaliation-spotlight-column">
+            <!-- Switzerland Card -->
+            <div class="country-case-card swiss-theme">
+              <div class="country-flag-header">
+                <span class="flag-icon">🇨🇭</span>
+                <div>
+                  <h3 class="country-name">Switzerland</h3>
+                  <span class="case-subtitle">Retaliatory Action & Boycott</span>
+                </div>
+              </div>
+              <div class="goods-pill-row">
+                <span class="good-pill">Iconic Swiss Watches</span>
+                <span class="good-pill">Luxurious Silk Textiles</span>
+              </div>
+              <p class="case-desc">
+                When US tariffs made Swiss watches and fine silk imports unaffordable in America, Swiss industry halted imports of American cars and agricultural machinery, triggering immediate export losses for American manufacturing.
+              </p>
+            </div>
+
+            <!-- Cuba Card -->
+            <div class="country-case-card cuba-theme">
+              <div class="country-flag-header">
+                <span class="flag-icon">🇨🇺</span>
+                <div>
+                  <h3 class="country-name">Cuba</h3>
+                  <span class="case-subtitle">Agricultural Retaliation</span>
+                </div>
+              </div>
+              <div class="goods-pill-row">
+                <span class="good-pill">Staple Cane Sugar</span>
+                <span class="good-pill">Havana Cigars</span>
+              </div>
+              <p class="case-desc">
+                High US import duties on Cuban sugar devastated the island's single-commodity export economy, sparking economic turmoil in the Caribbean and shutting US manufactured exports out of Latin American harbors.
+              </p>
+            </div>
+
+            <!-- Global Domino Effect Banner -->
+            <div class="trade-war-stat-box">
+              <div class="stat-highlight">
+                <span class="stat-num">-66%</span>
+                <span class="stat-label">Collapse in Global Trade Volume (1929–1934)</span>
+              </div>
+              <p class="stat-footnote">Instead of protecting domestic sales, US exports were crushed globally as trading partners shut their borders in retaliation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 4: Did It Work? & Interactive Political Cartoon -->
+    <section class="slide-section" id="slide-4" data-index="4">
+      <div class="slide-inner">
+        <div class="slide-heading-row">
+          <div>
+            <span class="card-tag gold">PRIMARY EVIDENCE & VERDICT</span>
+            <h2 class="slide-title">DID IT WORK?</h2>
+          </div>
+          <div class="pill-stats alert">FAILED GOAL: DOMESTIC FARMERS DEVASTATED</div>
+        </div>
+
+        <div class="verdict-layout">
+          <!-- Top Row: The 2 Core Evidence Cards from Slide 6 -->
+          <div class="verdict-cards-grid">
+            <!-- Card 1 -->
+            <div class="archival-card verdict-card">
+              <div class="verdict-icon-header">
+                <span class="verdict-icon">🏦</span>
+                <span class="verdict-badge">BANKING & CREDIT BREAKDOWN</span>
+              </div>
+              <p class="verdict-text">
+                A tariff is a tax used on imported goods to protect the domestic industry. The Hawley Smoot Tariff increased the tax of foreign goods by an additional 20% leading to a retaliatory tariff by foreign nations which collapsed the credit system of both foreign and domestic banks due to the inability to trade with the United States.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="archival-card verdict-card">
+              <div class="verdict-icon-header">
+                <span class="verdict-icon">🌾</span>
+                <span class="verdict-badge">FARM SURPLUSES & DEFAULTS</span>
+              </div>
+              <p class="verdict-text">
+                Specifically in the agricultural industry the price of cotton and other wares were so cheap due to low demand, leading to huge surpluses that farmers weren’t able to sell in the international market. This increase in surplus and inability to sell caused farmers to default on their mortgage loan, causing a domino effect that toppled American banks; further contributing to the great depression.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom: Interactive Humpty Dumpty Political Cartoon Exhibit -->
+          <div class="archival-card cartoon-stage-card">
+            <div class="cartoon-header-row">
+              <div>
+                <span class="card-tag">HISTORICAL ARTIFACT EXHIBIT</span>
+                <h3 class="cartoon-title">Primary Source: "Excessive Protection" on the Tariff Wall</h3>
+                <span class="cartoon-citation">Source: American-German Institute / Library of Congress (Udo J. Keppler & Schwarzmann, Puck Magazine)</span>
+              </div>
+              <div class="cartoon-hint-pill">
+                <span>Click the pulsing pins to inspect economic symbolism</span>
+              </div>
+            </div>
+
+            <div class="cartoon-interactive-wrapper">
+              <!-- Cartoon Image with Coordinate Hotspots -->
+              <div class="cartoon-media-container" id="cartoon-container">
+                <img src="assets/cartoon.jpg" alt="Political Cartoon: Humpty Dumpty representing Excessive Protection teetering on the Tariff Wall" class="cartoon-img" id="cartoon-img">
+
+                <!-- Hotspot 1: Humpty Dumpty's Face & Body -->
+                <button class="hotspot-pin pin-humpty" data-hotspot="humpty" style="top: 38%; left: 47%;" aria-label="Inspect Humpty Dumpty">
+                  <span class="pin-pulse"></span>
+                  <span class="pin-badge">1</span>
+                </button>
+
+                <!-- Hotspot 2: The Tariff Wall -->
+                <button class="hotspot-pin pin-wall" data-hotspot="wall" style="top: 55%; left: 18%;" aria-label="Inspect Tariff Wall">
+                  <span class="pin-pulse"></span>
+                  <span class="pin-badge">2</span>
+                </button>
+
+                <!-- Hotspot 3: The Logrolling Factions pulling ropes -->
+                <button class="hotspot-pin pin-crowd" data-hotspot="crowd" style="top: 42%; left: 74%;" aria-label="Inspect Special Interests">
+                  <span class="pin-pulse"></span>
+                  <span class="pin-badge">3</span>
+                </button>
+
+                <!-- Hotspot 4: The Inevitable Fall / Deadweight Loss -->
+                <button class="hotspot-pin pin-fall" data-hotspot="fall" style="top: 72%; left: 48%;" aria-label="Inspect Impending Fall">
+                  <span class="pin-pulse"></span>
+                  <span class="pin-badge">4</span>
+                </button>
+              </div>
+
+              <!-- Hotspot Interactive Details Panel -->
+              <div class="cartoon-details-panel" id="cartoon-details-panel">
+                <div class="panel-state-default" id="panel-state-default">
+                  <div class="inspection-prompt-icon">🔍</div>
+                  <h4>Interactive Cartoon Inspector</h4>
+                  <p>Click any numbered pin on the lithograph to reveal the economic symbolism, congressional logrolling, and how it proves why the tariff failed.</p>
+                  <div class="hotspot-quick-nav">
+                    <button class="nav-chip" onclick="selectHotspot('humpty')">1. Humpty Dumpty ("Excessive Protection")</button>
+                    <button class="nav-chip" onclick="selectHotspot('wall')">2. The High "Tariff Wall"</button>
+                    <button class="nav-chip" onclick="selectHotspot('crowd')">3. Congressional Tug-of-War</button>
+                    <button class="nav-chip" onclick="selectHotspot('fall')">4. The Unavoidable Crash</button>
+                  </div>
+                </div>
+
+                <div class="panel-state-active" id="panel-state-active" style="display: none;">
+                  <div class="panel-header-mini">
+                    <span class="detail-number" id="detail-number">1</span>
+                    <h4 id="detail-title">Symbol Title</h4>
+                  </div>
+                  <p class="detail-description" id="detail-description">Description text...</p>
+                  <div class="detail-ap-connection">
+                    <span class="connection-label">AP MICRO CONNECTION:</span>
+                    <p id="detail-ap-text">Connection text...</p>
+                  </div>
+                  <button class="close-detail-btn" id="btn-close-detail">← Back to Overview</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 5: Policy Recommendations & Sources (The Solution) -->
+    <section class="slide-section" id="slide-5" data-index="5">
+      <div class="slide-inner">
+        <div class="slide-heading-row">
+          <div>
+            <span class="card-tag gold">POLICY RECOMMENDATIONS & RESOLUTION</span>
+            <h2 class="slide-title">The solution</h2>
+          </div>
+          <div class="pill-stats success">TARIFFS REDUCED BY 50%</div>
+        </div>
+
+        <div class="solution-grid">
+          <!-- Left Column: FDR New Deal & How It Worked -->
+          <div class="solution-left-col">
+            <!-- FDR New Deal Goals Card -->
+            <div class="archival-card fdr-card">
+              <h3 class="fdr-header">Frankln D. Roosevelt’s (FDR) new deal policy.</h3>
+              <p class="fdr-sub">FDR’s New deal program had 3 goals:</p>
+              <div class="three-r-pills">
+                <div class="r-pill">
+                  <span class="r-letter">R</span>
+                  <span class="r-word">Releif</span>
+                </div>
+                <div class="r-pill">
+                  <span class="r-letter">R</span>
+                  <span class="r-word">Reciver</span>
+                </div>
+                <div class="r-pill">
+                  <span class="r-letter">R</span>
+                  <span class="r-word">Reform</span>
+                </div>
+              </div>
+              <p class="solution-punchline">
+                The issue was the tariff and the solution was FDR’s reciprocal trade agreement act.
+              </p>
+            </div>
+
+            <!-- How It Worked Card -->
+            <div class="archival-card how-it-worked-card">
+              <div class="card-header-label">
+                <span class="card-tag">LEGISLATIVE REFORM</span>
+                <h3>How it worked:</h3>
+              </div>
+              <p class="how-text">
+                The RTAA solidified reciprocal trade between America and other couuntries. (prodominantley latin american countries.) Republicans would vote for high tarrifs and Democrats would vote for lower tarrifs. This allowed for the tarrifs to be reliant on U.S. domestic politics.
+              </p>
+              <p class="how-text">
+                Instead of being controlled by congress kenedy was able to make Tarrifs something that was agreed on by the nation as a whole and by the executive branch. These new tarrifs were negotiable and were ensured to be feasible for other nations.
+              </p>
+              <div class="impact-badge-callout">
+                <span class="callout-icon">📉</span>
+                <span class="callout-text">Thanks to th RTAA and it’s impact, <strong>tarrifs in the U.S. decreased by 50%</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Official State Department Citation & Archival Record -->
+          <div class="solution-right-col">
+            <div class="archival-card quotation-card">
+              <div class="quote-header">
+                <span class="state-seal-icon">📜</span>
+                <div>
+                  <span class="card-tag">PRIMARY HISTORICAL CITATION</span>
+                  <h3>Office of The Historian Record</h3>
+                </div>
+              </div>
+
+              <blockquote class="state-quote">
+                “Between 1934 and 1939, the Roosevelt Administration concluded trade agreements with 19 countries under the Reciprocal Trade Agreements Act: Belgium, Brazil, Canada, Colombia, Costa Rica, Cuba, Czechoslovakia, Ecuador, El Salvador, Finland, France, Guatemala, Haiti, Honduras, the Netherlands, Nicaragua, Sweden, Switzerland, and the United Kingdom. After 1945, the tariff negotiating procedure established under the RTAA program provided the model for that of the General Agreement on Tariffs and Trade (GATT), the agreement signed by 23 countries in 1947 that has provided the framework for multilateral trade liberalization in the post-WWII era.”
+              </blockquote>
+
+              <div class="citation-block">
+                <div class="citation-label">Official Source Citation:</div>
+                <p class="citation-text">
+                  -Office of The Historian. “Milestones: 1921–1936 - Office of the Historian.” History.State.Gov, <a href="https://history.state.gov/milestones/1921-1936/export-import-bank" target="_blank" rel="noopener" class="external-cite-link">https://history.state.gov/milestones/1921-1936/export-import-bank</a>. Accessed 16 Oct. 2026.
+                </p>
+              </div>
+
+              <div class="sources-summary-card">
+                <h4 class="summary-subhead">Key Presentation Takeaway</h4>
+                <p>Protectionism isolated domestic agriculture, toppled the banking credit system, and prolonged economic devastation. Sustainable recovery required reciprocal bilateral negotiations and international trade liberalization under the RTAA and GATT.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Presentation Footer Bar -->
+  <footer class="deck-footer">
+    <div class="footer-left">
+      <span class="footer-authors">Miguel S, Chlono K, Hayden W, Ramata D</span>
+      <span class="footer-sep">•</span>
+      <span class="footer-topic">AP Microeconomics: Hawley-Smoot Act</span>
+    </div>
+
+    <!-- Quick Slide Indicator Dots -->
+    <div class="slide-dots-container" id="slide-dots">
+      <button class="dot-btn active" data-slide="1" title="Slide 1: Background & Thesis"></button>
+      <button class="dot-btn" data-slide="2" title="Slide 2: Domestic Market"></button>
+      <button class="dot-btn" data-slide="3" title="Slide 3: The Exporting Country"></button>
+      <button class="dot-btn" data-slide="4" title="Slide 4: Did It Work? & Cartoon"></button>
+      <button class="dot-btn" data-slide="5" title="Slide 5: The Solution & Sources"></button>
+    </div>
+
+    <div class="footer-right">
+      <span class="keyboard-tip">Use <kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd> to Navigate</span>
+    </div>
+  </footer>
+
+  <!-- MODAL: Hand-Drawn Canva Slide 4 Archival Graph Viewer -->
+  <div class="modal-overlay" id="graph-modal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3>Original Team Canva Slide 4 Diagram</h3>
+          <span class="modal-sub">Original hand-drawn AP Micro Supply, Demand, Surplus & Deadweight Loss layout</span>
+        </div>
+        <button class="modal-close-btn" id="btn-close-modal" aria-label="Close Modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/hand-drawn-graph.png" alt="Original Hand-drawn AP Micro Tariff Graph from Slide 4" class="archival-graph-modal-img">
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Teacher / Presentation Guide -->
+  <div class="modal-overlay" id="help-modal" style="display: none;">
+    <div class="modal-card help-modal-card">
+      <div class="modal-header">
+        <div>
+          <h3>Teacher & Presentation Quick Guide</h3>
+          <span class="modal-sub">How to present, navigate, and grade this AP Micro website</span>
+        </div>
+        <button class="modal-close-btn" id="btn-close-help" aria-label="Close Help">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="help-grid">
+          <div class="help-item">
+            <span class="help-key"><kbd>→</kbd> or <kbd>Space</kbd></span>
+            <span class="help-desc">Advance to next slide</span>
+          </div>
+          <div class="help-item">
+            <span class="help-key"><kbd>←</kbd></span>
+            <span class="help-desc">Return to previous slide</span>
+          </div>
+          <div class="help-item">
+            <span class="help-key"><kbd>F</kbd></span>
+            <span class="help-desc">Toggle Fullscreen presentation mode</span>
+          </div>
+          <div class="help-item">
+            <span class="help-key"><kbd>D</kbd></span>
+            <span class="help-desc">Switch between Slide Deck Mode and Continuous Document Scroll Mode</span>
+          </div>
+          <div class="help-item">
+            <span class="help-key"><kbd>1</kbd> - <kbd>5</kbd></span>
+            <span class="help-desc">Jump straight to specific slide number</span>
+          </div>
+        </div>
+
+        <div class="teacher-notes-box">
+          <h4>AP Micro Grading Checklist Met:</h4>
+          <ul>
+            <li>✅ <strong>Slide 1:</strong> Thesis stated & Hoover 1930 historical context explained.</li>
+            <li>✅ <strong>Slide 2:</strong> Supply and Demand graph with $P_w$, $P_t$, $Q_s$, $Q_{st}$, $Q_{dt}$, $Q_d$, CS, PS, DWL, and Tariff Revenue.</li>
+            <li>✅ <strong>Slide 3:</strong> Exporting country responses & Swiss / Cuban trade war retaliations.</li>
+            <li>✅ <strong>Slide 4:</strong> Primary evidence of 20% tariff hike, bank runs, agricultural surplus glut, plus interactive primary source cartoon.</li>
+            <li>✅ <strong>Slide 5:</strong> FDR New Deal, Reciprocal Trade Agreements Act (RTAA), GATT, and State.gov citations.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="graph.js"></script>
+  <script src="cartoon.js"></script>
+  <script src="presentation.js"></script>
+</body>
+</html>
