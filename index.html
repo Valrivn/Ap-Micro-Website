@@ -137,10 +137,13 @@
             <span class="author-icon" aria-hidden="true">👥</span>
             <span class="authors-names">Miguel S, Chlono K, Hayden W, Ramata D</span>
           </div>
-          <div class="camera-meta-stamp" title="Historical Photographic Reference">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
-            <span>35mm Press Archive · Exp. 1930 · f/4.5</span>
-          </div>
+        </div>
+
+        <!-- Train-of-Thought Narrative Bridge -->
+        <div class="narrative-flow-bridge" aria-hidden="true">
+          <span class="bridge-label">From Protectionist Intention</span>
+          <svg width="36" height="14" viewBox="0 0 36 14" fill="none" stroke="#a3e3a4" stroke-width="2" stroke-linecap="round"><path d="M2 7 H32 M26 2 L33 7 L26 12"/></svg>
+          <span class="bridge-label gold">To Inevitable Policy Collapse</span>
         </div>
 
         <!-- 2-Column Layout: Background Timeline & Framed Thesis with Scrapbook Mounts -->
@@ -232,22 +235,16 @@
             <h2 class="slide-title">Domestic Market</h2>
           </div>
 
-          <!-- Camera Meta Stamp + Tab Switcher -->
-          <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
-            <div class="camera-meta-stamp" title="Photographic Contact Sheet Analysis">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
-              <span>DARKROOM ANALYSIS · 1/60s</span>
-            </div>
-            <div class="model-view-tabs">
-              <button class="model-tab-btn active" id="tab-btn-vector" data-tab="vector">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                <span>Interactive Vector Model</span>
-              </button>
-              <button class="model-tab-btn" id="tab-btn-canva" data-tab="canva">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                <span>Original Canva Inspiration Slide 4</span>
-              </button>
-            </div>
+          <!-- Tab Switcher -->
+          <div class="model-view-tabs">
+            <button class="model-tab-btn active" id="tab-btn-vector" data-tab="vector">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              <span>Interactive Vector Model</span>
+            </button>
+            <button class="model-tab-btn" id="tab-btn-canva" data-tab="canva">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+              <span>Original Canva Inspiration Slide 4</span>
+            </button>
           </div>
         </div>
 
@@ -256,18 +253,26 @@
           <div class="domestic-market-layout">
             <!-- Left: Interactive AP Micro SVG Graph -->
             <div class="graph-stage-container archival-card">
-              <!-- 35mm Filmstrip Sprockets (cinematic-photo-archive) -->
-              <div class="filmstrip-sprocket-bar" aria-hidden="true">
-                <div class="sprocket-holes-cluster">
-                  <span class="sprocket-hole"></span>
-                  <span class="sprocket-hole"></span>
-                  <span class="sprocket-hole"></span>
+              <!-- Economic Train-of-Thought Stepper (Guides audience causal chain) -->
+              <div class="train-of-thought-stepper" aria-label="Tariff Impact Sequence">
+                <div class="stepper-step">
+                  <span class="step-num">1</span>
+                  <span class="step-text">World Price (P<sub>W</sub>)</span>
                 </div>
-                <span class="film-edge-code">SAFETY FILM · FRAME 24A ► [ WELFARE ANALYSIS ]</span>
-                <div class="sprocket-holes-cluster">
-                  <span class="sprocket-hole"></span>
-                  <span class="sprocket-hole"></span>
-                  <span class="sprocket-hole"></span>
+                <span class="stepper-arrow" aria-hidden="true">➔</span>
+                <div class="stepper-step highlight">
+                  <span class="step-num">2</span>
+                  <span class="step-text">+20% Tariff Imposed (P<sub>T</sub>)</span>
+                </div>
+                <span class="stepper-arrow" aria-hidden="true">➔</span>
+                <div class="stepper-step">
+                  <span class="step-num">3</span>
+                  <span class="step-text">Imports Collapse</span>
+                </div>
+                <span class="stepper-arrow" aria-hidden="true">➔</span>
+                <div class="stepper-step alert">
+                  <span class="step-num">4</span>
+                  <span class="step-text">Deadweight Loss</span>
                 </div>
               </div>
 
@@ -522,23 +527,6 @@
         <div class="verdict-layout">
           <!-- Left Column: Interactive Humpty Dumpty Political Cartoon Exhibit -->
           <div class="archival-card cartoon-stage-card photo-mount-card">
-            <!-- 35mm Filmstrip Perforations -->
-            <div class="filmstrip-sprocket-bar" aria-hidden="true">
-              <div class="sprocket-holes-cluster">
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-              </div>
-              <span class="film-edge-code">PUCK LITHOGRAPH · ARCHIVE FRAME #4 · 1930</span>
-              <div class="sprocket-holes-cluster">
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-              </div>
-            </div>
-
             <div class="cartoon-header-row">
               <div>
                 <span class="card-tag">HISTORICAL ARTIFACT EXHIBIT</span>
@@ -671,21 +659,6 @@
         <div class="qol-grid-layout">
           <!-- Left: Interactive Time-Series Trade Chart (1928 - 1940) -->
           <div class="archival-card trade-chart-card photo-mount-card">
-            <!-- 35mm Filmstrip Bar -->
-            <div class="filmstrip-sprocket-bar" aria-hidden="true">
-              <div class="sprocket-holes-cluster">
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-              </div>
-              <span class="film-edge-code">LONGITUDINAL REEL: 1928–1940 · FSA DOCUMENTARY CHRONOLOGY</span>
-              <div class="sprocket-holes-cluster">
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-                <span class="sprocket-hole"></span>
-              </div>
-            </div>
-
             <div class="chart-card-header">
               <div class="chart-header-flex">
                 <div>
@@ -885,10 +858,6 @@
                 <div>
                   <span class="card-tag">PRIMARY HISTORICAL CITATION</span>
                   <h3>Office of The Historian Record</h3>
-                </div>
-                <div class="camera-meta-stamp" style="margin-left:auto;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
-                  <span>MICROFILM · 1934</span>
                 </div>
               </div>
 
