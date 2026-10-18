@@ -2394,3 +2394,202 @@ body.document-mode .slide-dots-container {
     display: none;
   }
 }
+
+/* =============================================================================
+   CINEMATIC PHOTO ARCHIVE & TACTILE SCRAPBOOK COMPONENTS
+   (Adopted from diagram-design, slopbuster-ui, and cinematic-photo-archive)
+   ============================================================================= */
+
+/* 1. Vintage 1930s Photo-Corner Album Mounts */
+.photo-mount-card {
+  position: relative;
+}
+
+.photo-corner-tab {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.photo-corner-tab svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-corner-tab.tl { top: -3px; left: -3px; }
+.photo-corner-tab.tr { top: -3px; right: -3px; transform: rotate(90deg); }
+.photo-corner-tab.bl { bottom: -3px; left: -3px; transform: rotate(-90deg); }
+.photo-corner-tab.br { bottom: -3px; right: -3px; transform: rotate(180deg); }
+
+/* 2. 35mm Filmstrip Sprockets & Contact Sheet Track */
+.filmstrip-sprocket-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d1e17;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  margin-bottom: 8px;
+}
+
+.sprocket-holes-cluster {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.sprocket-hole {
+  width: 6px;
+  height: 9px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 1.5px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.film-edge-code {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent-gold);
+  opacity: 0.8;
+}
+
+/* 3. Camera Viewfinder Frame & Crop Brackets */
+.viewfinder-box {
+  position: relative;
+}
+
+.viewfinder-bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(212, 175, 55, 0.55);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.viewfinder-bracket.tl { top: -4px; left: -4px; border-top: 2px solid; border-left: 2px solid; }
+.viewfinder-bracket.tr { top: -4px; right: -4px; border-top: 2px solid; border-right: 2px solid; }
+.viewfinder-bracket.bl { bottom: -4px; left: -4px; border-bottom: 2px solid; border-left: 2px solid; }
+.viewfinder-bracket.br { bottom: -4px; right: -4px; border-bottom: 2px solid; border-right: 2px solid; }
+
+.viewfinder-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+/* 4. Semi-Translucent Washi / Masking Tape Strips */
+.washi-tape-strip {
+  position: absolute;
+  background: rgba(235, 225, 200, 0.32);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  border-left: 1px dashed rgba(255, 255, 255, 0.3);
+  border-right: 1px dashed rgba(255, 255, 255, 0.3);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.washi-tape-strip.center-top {
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 90px;
+  height: 18px;
+}
+
+.washi-tape-strip.angle-left {
+  top: -8px;
+  left: 18px;
+  transform: rotate(-3deg);
+  width: 65px;
+  height: 16px;
+}
+
+.washi-tape-strip.angle-right {
+  top: -8px;
+  right: 18px;
+  transform: rotate(3deg);
+  width: 65px;
+  height: 16px;
+}
+
+/* 5. Photographic Metadata & Exposure Stamps */
+.camera-meta-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #a3e3a4;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px dashed rgba(163, 227, 164, 0.35);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+.camera-meta-stamp svg {
+  display: inline-block;
+  vertical-align: -0.1em;
+}
+
+/* 6. Subtle Human Tactile Micro-Tilts */
+.tactile-tilt-left {
+  transform: rotate(-0.35deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tactile-tilt-right {
+  transform: rotate(0.4deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tactile-tilt-left:hover,
+.tactile-tilt-right:hover {
+  transform: rotate(0deg) translateY(-2px);
+}
+
+/* 7. Press Rubber Stamp Mark */
+.press-archive-stamp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(212, 175, 55, 0.55);
+  border-radius: 3px;
+  padding: 0.25rem 0.6rem;
+  transform: rotate(-2.5deg);
+  background: rgba(212, 175, 55, 0.05);
+  pointer-events: none;
+}
+
+.stamp-archival-title {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent-gold);
+}
+
+.stamp-archival-date {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  color: var(--accent-sage);
+}
+
