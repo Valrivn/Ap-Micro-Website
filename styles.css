@@ -1070,6 +1070,17 @@ body.document-mode .slide-dots-container {
 
 .flag-icon {
   font-size: 1.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.flag-icon svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: block;
+  border-radius: 4px;
 }
 
 .country-name {
