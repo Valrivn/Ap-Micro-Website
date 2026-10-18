@@ -20,8 +20,8 @@
 
   // Canvas Dimensions & Margins
   const width = 800;
-  const height = 500;
-  const padding = { top: 65, right: 165, bottom: 80, left: 85 };
+  const height = 520;
+  const padding = { top: 60, right: 165, bottom: 95, left: 85 };
 
   const plotW = width - padding.left - padding.right;
   const plotH = height - padding.top - padding.bottom;
@@ -226,12 +226,18 @@
           <line x1="${xQdt}" y1="${yPt}" x2="${xQdt}" y2="${height - padding.bottom}" stroke="rgba(255, 255, 255, 0.5)" stroke-dasharray="4,4" />
         ` : ''}
 
-        <!-- IMPORT CALLOUT BRACKET -->
+        <!-- IMPORT CALLOUT BRACKET (Shifted down with generous breathing room below X-ticks) -->
         <g>
-          <line x1="${isTariff ? xQst : xQs}" y1="${height - padding.bottom + 26}" x2="${isTariff ? xQdt : xQd}" y2="${height - padding.bottom + 26}" stroke="#a3e3a4" stroke-width="2" />
-          <circle cx="${isTariff ? xQst : xQs}" cy="${height - padding.bottom + 26}" r="3.5" fill="#a3e3a4" />
-          <circle cx="${isTariff ? xQdt : xQd}" cy="${height - padding.bottom + 26}" r="3.5" fill="#a3e3a4" />
-          <text x="${((isTariff ? xQst : xQs) + (isTariff ? xQdt : xQd)) / 2}" y="${height - padding.bottom + 42}" fill="#a3e3a4" font-size="11" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono', monospace">
+          <!-- Bracket Line -->
+          <line x1="${isTariff ? xQst : xQs}" y1="${height - padding.bottom + 48}" x2="${isTariff ? xQdt : xQd}" y2="${height - padding.bottom + 48}" stroke="#a3e3a4" stroke-width="2" />
+          <!-- Vertical end-ticks on the bracket for clear demarcation -->
+          <line x1="${isTariff ? xQst : xQs}" y1="${height - padding.bottom + 43}" x2="${isTariff ? xQst : xQs}" y2="${height - padding.bottom + 53}" stroke="#a3e3a4" stroke-width="2" />
+          <line x1="${isTariff ? xQdt : xQd}" y1="${height - padding.bottom + 43}" x2="${isTariff ? xQdt : xQd}" y2="${height - padding.bottom + 53}" stroke="#a3e3a4" stroke-width="2" />
+          <!-- Anchor Circles -->
+          <circle cx="${isTariff ? xQst : xQs}" cy="${height - padding.bottom + 48}" r="3.5" fill="#a3e3a4" />
+          <circle cx="${isTariff ? xQdt : xQd}" cy="${height - padding.bottom + 48}" r="3.5" fill="#a3e3a4" />
+          <!-- Bracket Label Text -->
+          <text x="${((isTariff ? xQst : xQs) + (isTariff ? xQdt : xQd)) / 2}" y="${height - padding.bottom + 67}" fill="#a3e3a4" font-size="11.5" font-weight="700" text-anchor="middle" font-family="'JetBrains Mono', monospace" letter-spacing="0.5">
             ${isTariff ? 'IMPORTS WITH TARIFF' : 'FREE TRADE IMPORTS'}
           </text>
         </g>
@@ -252,7 +258,7 @@
         <polygon points="${width - padding.right + 25},${height - padding.bottom - 5} ${width - padding.right + 25},${height - padding.bottom + 5} ${width - padding.right + 38},${height - padding.bottom}" fill="#ffffff" />
         
         <!-- X Axis Header Label (Safely positioned with end-anchor) -->
-        <text x="${width - 15}" y="${height - padding.bottom + 22}" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end" font-family="'Cinzel', serif" letter-spacing="0.5">Quantity</text>
+        <text x="${width - 15}" y="${height - padding.bottom + 20}" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end" font-family="'Cinzel', serif" letter-spacing="0.5">Quantity</text>
 
         <!-- AXIS TICKS & LABELS -->
         <!-- Y-Ticks -->
@@ -261,13 +267,21 @@
           <text x="${padding.left - 12}" y="${yPt + 4}" fill="#e5c378" font-size="14" font-weight="700" text-anchor="end" font-family="'JetBrains Mono', monospace">P<tspan baseline-shift="sub" font-size="11">T</tspan></text>
         ` : ''}
 
-        <!-- X-Ticks -->
-        <text x="${xQs}" y="${height - padding.bottom + 18}" fill="#ffffff" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">s</tspan></text>
-        <text x="${xQd}" y="${height - padding.bottom + 18}" fill="#ffffff" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">d</tspan></text>
+        <!-- X-Axis Tick Marks (Downward 5px ticks connecting axis to labels) -->
+        <line x1="${xQs}" y1="${height - padding.bottom}" x2="${xQs}" y2="${height - padding.bottom + 5}" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" />
+        <line x1="${xQd}" y1="${height - padding.bottom}" x2="${xQd}" y2="${height - padding.bottom + 5}" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" />
+        ${isTariff ? `
+          <line x1="${xQst}" y1="${height - padding.bottom}" x2="${xQst}" y2="${height - padding.bottom + 5}" stroke="#e5c378" stroke-width="1.5" />
+          <line x1="${xQdt}" y1="${height - padding.bottom}" x2="${xQdt}" y2="${height - padding.bottom + 5}" stroke="#e5c378" stroke-width="1.5" />
+        ` : ''}
+
+        <!-- X-Ticks Text -->
+        <text x="${xQs}" y="${height - padding.bottom + 20}" fill="#ffffff" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">s</tspan></text>
+        <text x="${xQd}" y="${height - padding.bottom + 20}" fill="#ffffff" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">d</tspan></text>
 
         ${isTariff ? `
-          <text x="${xQst}" y="${height - padding.bottom + 18}" fill="#e5c378" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">st</tspan></text>
-          <text x="${xQdt}" y="${height - padding.bottom + 18}" fill="#e5c378" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">dt</tspan></text>
+          <text x="${xQst}" y="${height - padding.bottom + 20}" fill="#e5c378" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">st</tspan></text>
+          <text x="${xQdt}" y="${height - padding.bottom + 20}" fill="#e5c378" font-size="13" font-weight="600" text-anchor="middle" font-family="'JetBrains Mono', monospace">Q<tspan baseline-shift="sub" font-size="10">dt</tspan></text>
         ` : ''}
       </svg>
     `;
