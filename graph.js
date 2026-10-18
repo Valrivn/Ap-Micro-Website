@@ -204,12 +204,12 @@
         <!-- HORIZONTAL PRICE LINES -->
         <!-- World Price (P_w) -->
         <line x1="${padding.left}" y1="${yPw}" x2="${width - padding.right}" y2="${yPw}" stroke="#6ee7b7" stroke-width="2" stroke-dasharray="6,4" />
-        <text x="${width - padding.right + 10}" y="${yPw + 4}" fill="#6ee7b7" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">world price</text>
+        <text x="${width - padding.right + 10}" y="${yPw + 4}" fill="#6ee7b7" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">World Price (P<tspan baseline-shift="sub" font-size="9">W</tspan>)</text>
 
         <!-- Tariff Price (P_t) -->
         ${isTariff ? `
           <line x1="${padding.left}" y1="${yPt}" x2="${width - padding.right}" y2="${yPt}" stroke="#e5c378" stroke-width="2.5" />
-          <text x="${width - padding.right + 10}" y="${yPt + 4}" fill="#e5c378" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">Price with Tariff</text>
+          <text x="${width - padding.right + 10}" y="${yPt + 4}" fill="#e5c378" font-size="12" font-weight="600" font-family="'JetBrains Mono', monospace">Tariff Price (P<tspan baseline-shift="sub" font-size="9">T</tspan>)</text>
         ` : ''}
 
         <!-- VERTICAL PROJECTION DASHED LINES -->
@@ -258,7 +258,7 @@
         <polygon points="${width - padding.right + 25},${height - padding.bottom - 5} ${width - padding.right + 25},${height - padding.bottom + 5} ${width - padding.right + 38},${height - padding.bottom}" fill="#ffffff" />
         
         <!-- X Axis Header Label (Safely positioned with end-anchor) -->
-        <text x="${width - 15}" y="${height - padding.bottom + 20}" fill="#ffffff" font-size="13" font-weight="700" text-anchor="end" font-family="'Cinzel', serif" letter-spacing="0.5">Quantity</text>
+        <text x="${width - 15}" y="${height - padding.bottom + 20}" fill="#ffffff" font-size="13" font-weight="800" text-anchor="end" font-family="'Cinzel', serif" letter-spacing="1">QUANTITY</text>
 
         <!-- AXIS TICKS & LABELS -->
         <!-- Y-Ticks -->

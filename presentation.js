@@ -258,15 +258,11 @@
     if (isGalleryOpen) {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') {
         e.preventDefault();
-        if (currentCanvaSlide < canvaSlideTitles.length) {
-          updateCanvaSlide(currentCanvaSlide + 1);
-        }
+        setCanvaGallerySlide(currentCanvaSlide < 7 ? currentCanvaSlide + 1 : 1);
         return;
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
-        if (currentCanvaSlide > 1) {
-          updateCanvaSlide(currentCanvaSlide - 1);
-        }
+        setCanvaGallerySlide(currentCanvaSlide > 1 ? currentCanvaSlide - 1 : 7);
         return;
       }
     }
