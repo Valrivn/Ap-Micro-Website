@@ -1328,6 +1328,7 @@ body.document-mode .slide-dots-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 380px;
 }
 
 .panel-state-default {
@@ -1572,10 +1573,11 @@ body.document-mode .slide-dots-container {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .era-chip {
+  flex: 1 1 auto;
+  text-align: center;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--text-on-dark-muted);
@@ -1660,6 +1662,19 @@ body.document-mode .slide-dots-container {
   padding: 1.4rem 1.6rem;
   background: var(--bg-card-dark);
   border-radius: 10px;
+  border-left: 3px solid var(--border-parchment);
+}
+
+.qol-index-card:nth-child(1) {
+  border-left-color: #ef4444;
+}
+
+.qol-index-card:nth-child(2) {
+  border-left-color: #f59e0b;
+}
+
+.qol-index-card:nth-child(3) {
+  border-left-color: #3b82f6;
 }
 
 .qol-card-top {
@@ -1947,27 +1962,34 @@ body.document-mode .slide-dots-container {
 .slide-dots-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.65rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .dot-btn {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border: none;
   cursor: pointer;
+  padding: 6px;
+  margin: -6px;
+  background-clip: content-box;
   transition: var(--transition-smooth);
 }
 
 .dot-btn:hover {
-  background: rgba(255, 255, 255, 0.5);
-  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(1.25);
 }
 
 .dot-btn.active {
   background: var(--accent-sage);
-  transform: scale(1.3);
+  background-clip: content-box;
+  transform: scale(1.35);
   box-shadow: 0 0 8px rgba(158, 226, 165, 0.6);
 }
 
@@ -2077,14 +2099,14 @@ body.document-mode .slide-dots-container {
 }
 
 .gallery-nav-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 1;
   width: 44px;
-  height: 60px;
-  border-radius: 6px;
+  height: 44px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -2095,6 +2117,8 @@ body.document-mode .slide-dots-container {
 .gallery-nav-btn:hover {
   background: var(--accent-sage);
   color: #0f221b;
+  border-color: var(--accent-sage);
+  transform: scale(1.08);
 }
 
 .gallery-current-slide {
@@ -2214,9 +2238,9 @@ body.document-mode .slide-dots-container {
 
 .teacher-notes-box h4 {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   color: var(--accent-sage);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
 }
 
 .teacher-notes-box ul {
@@ -2224,15 +2248,26 @@ body.document-mode .slide-dots-container {
 }
 
 .teacher-notes-box li {
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: var(--text-on-dark);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.45rem;
 }
 
 /* ==========================================================================
    Responsive Adaptations
    ========================================================================== */
+
+@media (max-width: 1140px) {
+  .mode-pill-btn span,
+  .canva-pill-btn span {
+    display: none;
+  }
+  .mode-pill-btn,
+  .canva-pill-btn {
+    padding: 0.35rem 0.5rem;
+  }
+}
 
 @media (max-width: 1024px) {
   .slide1-grid,

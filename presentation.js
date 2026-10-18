@@ -98,12 +98,24 @@
     }
   }
 
+  function handleDocumentScroll() {
+    if (!isDocumentMode || !progressBar) return;
+    const scrollH = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollH > 0) {
+      const pct = (window.scrollY / scrollH) * 100;
+      progressBar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+    }
+  }
+
+  window.addEventListener('scroll', handleDocumentScroll, { passive: true });
+
   function toggleViewMode() {
     isDocumentMode = !isDocumentMode;
     if (isDocumentMode) {
       body.classList.remove('deck-mode');
       body.classList.add('document-mode');
       if (viewModeLabel) viewModeLabel.textContent = 'Presentation Mode';
+      handleDocumentScroll();
     } else {
       body.classList.remove('document-mode');
       body.classList.add('deck-mode');
@@ -239,6 +251,24 @@
       if (helpModal) helpModal.style.display = 'none';
       if (canvaGalleryModal) canvaGalleryModal.style.display = 'none';
       return;
+    }
+
+    // If Canva Gallery Modal is open, Left/Right arrow keys navigate the gallery
+    const isGalleryOpen = canvaGalleryModal && canvaGalleryModal.style.display !== 'none';
+    if (isGalleryOpen) {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (currentCanvaSlide < canvaSlideTitles.length) {
+          updateCanvaSlide(currentCanvaSlide + 1);
+        }
+        return;
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (currentCanvaSlide > 1) {
+          updateCanvaSlide(currentCanvaSlide - 1);
+        }
+        return;
+      }
     }
 
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {

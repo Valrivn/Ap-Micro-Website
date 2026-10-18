@@ -15,7 +15,7 @@ const hotspotData = {
     num: 2,
     title: 'The "Tariff Wall"',
     desc: 'The imposing brick barrier labeled "TARIFF WALL" represents the Smoot-Hawley Tariff Act of 1930, which placed prohibitive tax rates across over 20,000 imported items in a desperate bid to shut out European and global competition.',
-    apText: 'The tariff wall drives a wedge between world price (P_w) and domestic price (P_t). While it generates government tariff revenue (the green rectangle on your Slide 2 graph), it creates deadweight loss (DWL) by choking off mutually beneficial voluntary exchange.'
+    apText: 'The tariff wall drives a wedge between world price (P<sub>W</sub>) and domestic price (P<sub>T</sub>). While it generates government tariff revenue (the green rectangle on your Slide 2 graph), it creates deadweight loss (DWL) by choking off mutually beneficial voluntary exchange.'
   },
   crowd: {
     num: 3,
@@ -49,7 +49,7 @@ window.selectHotspot = function(id) {
     numSpan.textContent = data.num;
     titleEl.textContent = data.title;
     descEl.textContent = data.desc;
-    apEl.textContent = data.apText;
+    apEl.innerHTML = data.apText;
   }
 
   // Update pin active states

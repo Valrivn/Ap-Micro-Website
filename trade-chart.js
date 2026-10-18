@@ -91,7 +91,7 @@
         <!-- Horizontal Grid Lines -->
         ${[1, 2, 3, 4, 5, 6].map(v => `
           <line x1="${padding.left}" y1="${getY(v)}" x2="${width - padding.right}" y2="${getY(v)}" stroke="rgba(255,255,255,0.06)" />
-          <text x="${padding.left - 10}" y="${getY(v) + 4}" fill="rgba(255,255,255,0.45)" font-size="10.5" font-family="'JetBrains Mono', monospace" text-anchor="end">$${v}B</text>
+          <text x="${padding.left - 10}" y="${getY(v) + 4}" fill="#b8cfc3" font-size="10.5" font-family="'JetBrains Mono', monospace" text-anchor="end">$${v}B</text>
         `).join('')}
 
         <!-- Axes -->
